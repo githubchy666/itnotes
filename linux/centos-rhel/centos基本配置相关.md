@@ -81,7 +81,7 @@ centos7默认启用firewall和selinux进行安全策略配置。如果要关闭�
 
   - 查看selinux状态  `getenforce`
   - 临时关闭：`setenforce 0`
-  - 永久关闭：编辑`/etc/sysconfig/selinux`，将其中的`SELINUX=enforcing`修改为`SELINUX=disabled`，重启后生效（也可执行`setenforce 0`暂时关闭）。
+  - 永久关闭：编辑`/etc/selinux/config`，将其中的`SELINUX=enforcing`修改为`SELINUX=disabled`，重启后生效。
 
 # 自启动管理
 

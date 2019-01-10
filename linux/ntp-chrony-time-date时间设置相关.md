@@ -226,8 +226,6 @@ ntpdate <time-server>
 
 
 
-
-
 ## date
 
 ```shell

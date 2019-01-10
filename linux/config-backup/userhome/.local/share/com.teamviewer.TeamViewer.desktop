@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Categories=Network;
+Name=TeamViewer 13
+Comment=Remote control and meeting solution.
+Exec=sudo systemctl start teamviewerd.service && /opt/teamviewer/tv_bin/script/teamviewer
+Icon=TeamViewer

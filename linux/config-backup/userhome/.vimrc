@@ -55,7 +55,7 @@ set autoread
 "禁止生成临时文件
 set nobackup
 "允许鼠标操作
-"set mouse=a
+set mouse=a
 
 "魔术 (设置元字符要加反斜杠进行转义)
 "magic(\m模式)除了 $ . * ^ 之外其他元字符都要加反斜杠

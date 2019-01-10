@@ -92,12 +92,18 @@ rwx是最基本的权限。
 
 ## chmod/chown/chgrp
 
+- 常用参数：
+  - `-c`或`--changes`  显示更改部分信息
+  - `-R`或`--recursive`  作用于该目录下所有的文件和子目录
+  - `-h`  修复符号链接
+  - `--reference`  以指定的目录或文件的权限作为参照进行权限设置
+
 - chmod修改权限
 
   ```shell
   chmod [参数] <权限范围>[+-=]<权限> <文件/目录>
-  chmod -R g+r /srv
-  chmod -R u+w,g+r /srv  #多条权限规则使用逗号分隔
+  chmod -cR g+r /srv
+  chmod -cR u+w,g+r /srv  #多条权限规则使用逗号分隔
   ```
 
   [权限范围](#权限范围)：u g o a
@@ -117,7 +123,7 @@ rwx是最基本的权限。
 
   ```shell
   chown [参数] <组名> <文件/目录>  #冒号:也可以使用点号.
-  chown -R nginx /srv/
+  chown -cR nginx /srv/
   ```
 
 ## ACL权限管理

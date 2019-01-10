@@ -99,9 +99,7 @@ alias pacman='sudo pacman'
 alias orphan='pacman -Rscn $(pacman -Qtdq)'
 
 #makepkg aur packing
-alias aurinfo='echo -e "Update .SRCINFO: \e[1m makepkg --printsrcinfo > .SRCINFO \e[0m"\
- && makepkg --printsrcinfo > .SRCINFO\
- && git status'
+alias aurinfo='makepkg --printsrcinfo > .SRCINFO ; git status'
 
 #---temporary locale---
 alias x='export LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 LC_MESSAGES=en_US.UTF-8 && startx'
@@ -139,6 +137,9 @@ alias tree='tree -C -L 1 --dirsfirst'
 
 alias atd='systemctl start atd'
 
+# clean unused files
+alias cleanoldlinks='sudo rm $(find -xtype l -print)'
+
 # ===common tools short commands===
 #backup important files
 alias backup="echo 'Starting'\
@@ -170,7 +171,7 @@ alias privoxyrestop='sudo systemctl stop privoxy'
 
 #---nmap
 #scan alive hosts
-alias nmap-hosts="sudo nmap echo $(echo $gateway|cut -d '.' -f 1-3).0/24"
+alias 'nmap-hosts'="sudo nmap -sS `echo $gateway|cut -d '.' -f 1-3`.0/24"
 
 #install/update geoip database
 alias geoipdata="cd /tmp && wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz && wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && wget http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz && gunzip GeoIP.dat.gz && gunzip GeoIPASNum.dat.gz && gunzip GeoLiteCity.dat.gz && sudo cp GeoIP.dat GeoIPASNum.dat GeoLiteCity.dat /usr/share/GeoIP/ && cd -"
@@ -178,13 +179,9 @@ alias geoipdata="cd /tmp && wget http://geolite.maxmind.com/download/geoip/datab
 #---convert tools----
 
 #iconv -- file content encoding
-#iconvgbk newfile originfile
-#iconvgbk newfile oldfile
-alias iconvgbk='iconv -c -f GBK -t UTF-8 -o '
+alias iconvgbk='iconv -f GBK -t UTF-8'
 #convmv -- filename encoding
 alias convmvgbk='convmv -f GBK -T UTF-8 --notest --nosmart'
-#zip gbk
-alias unzipgbk='unzip -O gbk '
 
 #asciinema record terminal
 alias rec='asciinema rec -i 5 terminal-`date +%Y%m%d-%H%M%S`'  #record
@@ -204,6 +201,9 @@ alias yd='ydcv'
 
 #npm -g list --depth=0
 alias npmlistg='sudo npm -g list --depth=0'
+
+#docker container
+alias hack='sudo systemctl start docker && docker start hack && docker exec -it hack bash'
 
 #---for fun---
 #cmatrix

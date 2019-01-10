@@ -116,6 +116,12 @@
 
 ### UEFI模式
 
+检查当前是否使用UEFI启动：
+
+```shell
+ls /sys/firmware/efi/  #如果该文件存在则表示使用UEFI启动
+```
+
 - ESP(EFI系统分区)
 
   - 已经存在ESP
@@ -389,9 +395,14 @@ pacman -S xf86-video-vesa     #通用显卡
 pacman -S xf86-video-intel     #intel核心显卡  可不安装 内核中已经集成开源实现
 pacman -S nvidia                       #nvidia显卡驱动（包含vulkan）
 pacman -S mesa                       #amd显卡使用开源mesa驱动即可(一般已经在基础系统中集成)
+
 #vulkan 支持
-#pacman -S vulkan-intel    #intel显卡
-#pacman -S vulkan-radeon    #amd/ati显卡
+pacman -S vulkan-intel    #intel显卡
+pacman -S vulkan-radeon    #amd/ati显卡
+
+#opencl支持
+pacman -S opencl-mesa  #mesa(amd)
+pacman -S opencl-nvidia  #nvidia
 ```
 注意：
 

@@ -1,6 +1,6 @@
 1. 修改引导
    1. 在grub引导界面，按下`e`修改选项。
-   2. 移动光标到启动项目一行的最后（该行内容以类似`linux 16`开始）按下空格，再添加`rd.break`。
+   2. 移动光标到启动项目一行（该行内容以类似`linux 16`开始）的最后，添加空格，再添加`rd.break`。
    3. <kbd>ctrl</kbd> <kbd>x</kbd>完成修改，开始系统引导。
 2. 修改密码
    1. `mount -o remount,rw /sysroot` 重新挂载`/sysroot`；

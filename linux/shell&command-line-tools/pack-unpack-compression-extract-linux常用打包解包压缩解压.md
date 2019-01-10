@@ -1,13 +1,15 @@
 [TOC]
 
 - 跨平台压缩推荐使用7z或zip（注意使用UTF-8格式！）
-- tar打包压缩推荐配合xz（即最后制成.tar.xz文件），xz压缩率好，大多数linux都带有该工具。
+- tar打包压缩推荐配合xz压缩，xz具有较高的压缩率。
 
 以下示例命令中test指某个文件或者文件夹
 
-# tar
+## 常见打包和压缩格式
 
-tar打包解包
+## tar
+
+### tar打包解包
 
 ```shell
 #仅查看内容
@@ -42,8 +44,9 @@ tar -xvf test.tar test
 
 - -C <目录>：这个选项用在解压缩时指定解压到特定目录；
 
+### tar打包并压缩和解压缩并解包
 
-打包压缩/解压缩并解包：tar可加压缩参数在打包后压缩成xz、bz2和gz等格式。
+tar可加压缩参数在打包后压缩成xz、bz2和gz等格式。
 
 - -J ：支持xz压缩
 - -j：支持bz2压缩
@@ -54,7 +57,9 @@ tar xJvf test.tar.xz
 tar cJvf tets.tar 
 ```
 
-# .gz
+## .gz
+
+参照上文，可配合tar使用。
 
 ```shell
 #gzip或gnuzip
@@ -63,7 +68,9 @@ gzip -d test.gz  #解压
 gzip test  #压缩
 ```
 
-# .bz2
+## .bz2
+
+参照上文，可配合tar使用。
 
 ```shell
 #使用bzip2或bunzip2
@@ -71,16 +78,22 @@ bzip2 -z test  #压缩
 bzip2 -d test.bz2  #解压
 ```
 
-# .xz
+## .xz
+
+参照上文，可配合tar使用。
 
 ```shell
 xz -z test  #压缩
 xz -d test.xz  #解压
 ```
 
-# .zip
+## .zip
 
-工具zip和unzip/unzip-iconv（unzip-iconv用法同unzip，只是多了一个-O参数可指定编码格式）
+压缩工具：zip
+
+解压工具：unzip
+
+​	unzip-iconv，为unzip增加了转码补丁，可在解压缩时使用-O参数可指定编码格式。
 
 ```shell
 zip test.zip test  #打包
@@ -89,7 +102,7 @@ unzip test.zip  #解包
 unzip -O gbk test.zip
 ```
 
-# .7z
+## .7z
 
 工具p7zip
 
@@ -98,11 +111,53 @@ unzip -O gbk test.zip
 7za x test.7z  #解压
 ```
 
-# .rar
+## .rar
 
-工具rar和unrar
+压缩工具：rar
+
+解压工具：unrar
 
 ```shell
 rar a test.rar test  #压缩
 unrar test.rar  #解压
 ```
+
+# 特殊文件打包/解包和压缩/解压
+
+## archlinux系安装包
+
+- 解包/解压缩：tar.xz格式，参看上文[tar](#tar)。
+- 打包工具：makepkg
+
+## redhat系安装包rpm
+
+- 解包/解压缩：
+
+  RPM包括是使用cpio格式打包的，因此可以先转成cpio然后解压，如下所示：
+
+  ```shell
+  rpm2cpio <file.rpm> | cpio -div
+  ```
+
+- 打包rpm工具：rpmbuild
+
+## debian系安装包deb
+
+- 解包工具：ar
+
+  ```shell
+  ar -x <file.deb>
+  tar -zxvf data.tar.gz  #解开应用文件夹
+  ```
+
+- 打包deb工具：dpkg-deb
+
+## exe
+
+- 解压缩：p7zip
+
+  ```shell
+  7z -x <file.exe>
+  ```
+
+
